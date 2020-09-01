@@ -50,19 +50,17 @@ function readLine() {
 
 // Complete the sockMerchant function below.
 function sockMerchant(n, ar) {
-    let sockTracker = {};
+    let breadCrumbs = {};
     let count = 0;
-    for(let i=0;i<ar.length;i++){
-        if(ar[i] in sockTracker) {
-            sockTracker[ar[i]] += 1;
-            if(sockTracker[ar[i]] === 2){
-                count +=1;
-            } else if(sockTracker[ar[i]] % 2 === 0){
-                count +=1;
-            }
+    for(let i=0;i<ar.length;i++) {
+        if(breadCrumbs[ar[i]]) {
+            breadCrumbs[ar[i]] += 1;
         } else {
-             sockTracker[ar[i]] = 1;
+            breadCrumbs[ar[i]] = 1;
         }
+    }
+    for(let i in breadCrumbs) {
+        count += Math.floor(breadCrumbs[i] / 2);
     }
     return count;
 }
